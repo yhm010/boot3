@@ -58,6 +58,14 @@
 				<!-- 버전 삭제 -->
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+			<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<!-- 버전 삭제 -->
+			<scope>provided</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
