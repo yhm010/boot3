@@ -10,9 +10,7 @@
     
     <select id="getList" resultType="BoardVO" parameterType="Pager">
     	SELECT * FROM BOARD
-    	WHERE NUM > 0
-    	ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}
-		<!-- where contents like concat('%', #{search},'%')
+    	WHERE NUM > 0 and 	
     	<choose>
 			<when test="kind=='col1'">
 				TITLE
@@ -23,8 +21,9 @@
 			<otherwise>
 				WRITER
 			</otherwise>
-		</choose> -->
-    	
+		</choose>  	 
+		LIKE CONCAT('%', #{search},'%')
+    	ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}   	
     </select>
     
     <insert id="setAdd" parameterType="BoardVO">

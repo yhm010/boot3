@@ -5,16 +5,18 @@ import lombok.Data;
 @Data
 public class Pager {
 	
-	// DB에서 몇개씩 조회?
+	// DB에서 몇개씩 조회? (파라미터의 값 가능)
 	private Integer perPage;
 	// DB에서 조회할 시작 인덱스 번호
 	private Integer StartRow;
 	
-	//페이지 번호(파라미터의 값)
+	//페이지 번호 (파라미터의 값)
 	private Integer pn;
 	
-	// 검색 사용 변수
+	// 검색어 (파라미터의 값)
 	private String search;
+	
+	// 검색 종류 (파라미터의 값)
 	private String kind;
 	
 	public void makeRow() {
@@ -39,6 +41,7 @@ public class Pager {
 		return this.perPage;
 	}
 	
+	//GETTER : get+멤버변수명, 멤버변수명의 첫글자는 대문자
 	public String getSearch() {
 		if(this.search==null) {
 			this.search="";
@@ -46,7 +49,7 @@ public class Pager {
 		return search;
 	
 	}
-
+	//SETTER : set+멤버변수명, 멤버변수명의 첫글자는 대문자
 	public void setSearch(String search) {
 		this.search = search;
 	}
