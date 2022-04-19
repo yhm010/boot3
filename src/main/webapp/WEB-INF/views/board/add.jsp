@@ -19,18 +19,21 @@
 </div>
 </div>
 </div>
-	
+	<form action="./add" method="post">
 	<div class="row mb-3">
   <label for="title" class="col-sm-2 col-form-label">제목</label>
-  <input type="title" class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력하세요.">
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력하세요." name="title">
 </div>
 <div class="row mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="contents"></textarea>
+</div>
+<label for="title" class="col-sm-2 col-form-label">작성자</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" name="writer">
 </div>
 
-<a href="./add" type="button" class="col-1 btn btn-outline-primary">add</a>
-
+ <button type="submit">등록</button>
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

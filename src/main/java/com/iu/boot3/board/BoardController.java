@@ -30,20 +30,25 @@ public class BoardController {
 		List<BoardVO> ar = boardService.getList(pager);
 		mv.setViewName("board/list");
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		return mv;
 	}
 	
 	@GetMapping("add")
-	public ModelAndView add()throws Exception{
+	public ModelAndView setadd()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/add");
 		return mv;
 	}
 	
 	@PostMapping("add")
-	public ModelAndView add(BoardVO boardVO)throws Exception{
+	public ModelAndView setadd(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println(boardVO.getTitle());
+		System.out.println(boardVO.getContents());
+		System.out.println(boardVO.getWriter());
 		int result = boardService.setAdd(boardVO);
+		System.out.println("add result : "+ result);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

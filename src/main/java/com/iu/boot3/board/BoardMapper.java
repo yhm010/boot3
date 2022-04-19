@@ -37,4 +37,7 @@ public interface BoardMapper {
 	
 	//delete : setDelete
 	public int setDelete(BoardVO boardVO)throws Exception;
+	
+	//totalCount
+	public Long getTotalCount(Pager pager)throws Exception;
 }
