@@ -1,1 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.iu.boot3.member.MemberMapper">
+    
+    <insert id="join" parameterType="MemberVO">
+    SELECT * FROM MEMBER
+    WHERE ID = #{id} AND PW = #{pw}
+    </insert>
+    
+    <select id="login" parameterType="MemberVO" resultType="MemberVO">
+	INSERT INTO MEMBER (ID, PW, NAME, EMAIL, PHONE)
+	VALUES (ID=#{id}, PW=#{pw}, NAME=#{name}, EMAIL=#{email}, PHONE#{phone} )
+    </select>
+    
+    <select id="mypage" parameterType="MemberVO" resultType="MemberVO">
+    SELECT * M.NAME, M.EMAIL, M.PHONE, F.*
+    FROM MEMBER M
+    	LEET JOIN
+    	MEMBERFILES F
+    	USING (ID)
+    	WHERE ID=#{id}
+    </select>
+    
+    <update id="update" parameterType="MemberVO">
+    UPDATE MEMBER SET
+    NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}
+    WHEHE ID = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="MemberVO">
+    DELETE FROM MEMBER WHERE ID=#{id}
+    </delete>
+    
+    </mapper>
