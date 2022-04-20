@@ -22,9 +22,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>update</h1>
+<h1>수정</h1>
 
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Name</label>
+  <input type="name" value="${vo.name}" class="form-control" id="name" placeholder="이름을 변경하세요">
+</div>
 
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">E-mail</label>
+  <input type="email" value="${vo.email}" class="form-control" id="email" placeholder="이메일을 변경하세요">
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Phone</label>
+  <input type="phone" value="${vo.phone}" class="form-control" id="phone" placeholder="번호를 변경하세요">
+</div>
+
+<div class="mb-3">
+  <label for="formFile" class="form-label">File</label>
+  <input class="form-control" value="${vo.file}"type="file" id="formFile">
+</div>
+
+<a href="/"><button type="submit" class="btn btn-secondary">완료</button></a>
 
 
 

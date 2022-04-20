@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,7 @@ public class MemberController {
 	public ModelAndView join(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = memberSerive.join(memberVO);
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:../");
 		return mv;
 	}
 	
@@ -74,16 +75,23 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:../");
 		return mv;
-	}
+	}	
+	
+//	@GetMapping("mypage")
+//	public ModelAndView mypage(HttpSession session)throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+//		memberVO = memberSerive.mypage(memberVO);
+//		mv.addObject("member/mypage");
+//		mv.addObject("vo", memberVO);
+//		return mv;
+//	}
 	
 	@GetMapping("mypage")
-	public ModelAndView mypage(HttpSession session)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	public void mypage(HttpSession session, Model model) throws Exception{
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		memberVO = memberSerive.mypage(memberVO);
-		mv.setViewName("member/mypage");
-		mv.addObject("vo", memberVO);
-		return mv;
+		model.addAttribute("vo", memberVO);
 	}
 	
 	@GetMapping("update")

@@ -25,18 +25,20 @@
 <h1>로그인</h1>
 
 <div class="mb-3">
+<form action="./login" method="post">
   <label for="exampleFormControlInput1" class="form-label">ID</label>
-  <input type="id" class="form-control" id="id" placeholder="ID를 입력하세요">
+  <input type="id" class="form-control" name="id" id="id" placeholder="ID를 입력하세요">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="pw">
+    <input type="password" class="form-control" name="pw" id="pw">
 </div>
 
 
 <a href="/"><button type="submit" class="btn btn-secondary">로그인</button></a>
 
+</form>
 
 
 	<script

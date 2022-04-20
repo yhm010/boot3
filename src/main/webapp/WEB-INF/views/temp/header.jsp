@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
 <header class="container-fluid">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -35,18 +34,25 @@
       </ul>
       </li>
       
-        <li class="nav-item">
-          <a class="nav-link active" href="/member/join">회원가입</a>
-        </li>
-        
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/member/login">로그인</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link active" href="/">로그아웃</a>
-        </li>
+      
+        <c:choose>
+        	<c:when test="${not empty member}">
+        		<li class="nav-item">
+         		 <a class="nav-link active" href="/member/mypage">내 정보</a>
+        		</li>
+        		<li class="nav-item">
+         		 <a class="nav-link active" href="/member/logout">로그아웃</a>
+        		</li>
+        	</c:when>
+        	<c:otherwise>
+        	<li class="nav-item">
+         		 <a class="nav-link active" href="/member/login">로그인</a>
+        		</li>
+        		<li class="nav-item">
+         		 <a class="nav-link active" href="/member/join">회원가입</a>
+        		</li>
+        	</c:otherwise>
+        </c:choose>
 	
     </div>
   </div>

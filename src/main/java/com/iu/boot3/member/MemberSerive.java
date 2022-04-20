@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.iu.boot3.util.FileManger;
 
 @Service
 public class MemberSerive {
@@ -11,9 +14,13 @@ public class MemberSerive {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	@Autowired
+	private FileManger fileManger;
+	
 	//join
-	public int join(MemberVO memberVO)throws Exception{
+	public int join(MemberVO memberVO) throws Exception{
 		return memberMapper.join(memberVO);
+		
 	}
 	
 	//login
@@ -34,6 +41,11 @@ public class MemberSerive {
 	//update
 	public int update(MemberVO memberVO)throws Exception{
 		return memberMapper.update(memberVO);
+	}
+	
+	//addfile
+	public int addFile(MemberFilesVO memberFilesVO, MultipartFile file)throws Exception{
+		return memberMapper.addFile(memberFilesVO);
 	}
 
 }

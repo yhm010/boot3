@@ -24,34 +24,30 @@
 <body>
 <h1>회원가입</h1>
 
+<form action="./join" method="post">
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">ID</label>
-  <input type="id" class="form-control" id="id" placeholder="ID를 입력하세요">
+  <input type="id" class="form-control" name="id" id="id" placeholder="ID를 입력하세요">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="pw">
-</div>
-
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Password 확인</label>
-    <input type="password" class="form-control" id="pw">
+    <input type="password" class="form-control" name="pw" id="pw">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Name</label>
-  <input type="name" class="form-control" id="name" placeholder="이름을 입력하세요">
+  <input type="name" class="form-control" name="name" id="name" placeholder="이름을 입력하세요">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-  <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요">
+  <input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력하세요">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Phone</label>
-  <input type="phone" class="form-control" id="phone" placeholder="번호를 입력하세요">
+  <input type="phone" class="form-control" name="phone" id="phone" placeholder="번호를 입력하세요">
 </div>
 
 <div class="mb-3">
@@ -61,6 +57,7 @@
 
 <a href="/"><button type="submit" class="btn btn-secondary">완료</button></a>
 
+</form>
 
 
 	<script

@@ -21,4 +21,7 @@ public interface MemberMapper {
 
 	//delete
 	public int delete(MemberVO memberVO)throws Exception;
+	
+	//addfile
+	public int addFile(MemberFilesVO memberFilesVO) throws Exception;
 }

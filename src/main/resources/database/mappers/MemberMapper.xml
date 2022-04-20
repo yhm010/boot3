@@ -5,14 +5,19 @@
     
     <mapper namespace="com.iu.boot3.member.MemberMapper">
     
-    <insert id="join" parameterType="MemberVO">
-    SELECT * FROM MEMBER
-    WHERE ID = #{id} AND PW = #{pw}
+    <insert id="addFile" parameterType="MemberFilesVO">
+    INSERT INTO MEMBERFILES (FILENUM, ID, FILENAME, ORINAME)
+	VALUES (NULL, #{id}, #{fileName}, #{oriName})
     </insert>
     
-    <select id="login" parameterType="MemberVO" resultType="MemberVO">
+    <insert id="join" parameterType="MemberVO">
 	INSERT INTO MEMBER (ID, PW, NAME, EMAIL, PHONE)
-	VALUES (ID=#{id}, PW=#{pw}, NAME=#{name}, EMAIL=#{email}, PHONE#{phone} )
+	VALUES (#{id}, #{pw}, #{name}, #{email}, #{phone} )
+    </insert>
+    
+    <select id="login" parameterType="MemberVO" resultType="MemberVO">    
+    SELECT ID, NAME FROM MEMBER
+	WHERE ID=#{id} AND PW=#{pw}
     </select>
     
     <select id="mypage" parameterType="MemberVO" resultMap="mypageResult">
@@ -37,8 +42,7 @@
 	</resultMap>
     
     <update id="update" parameterType="MemberVO">
-    UPDATE MEMBER SET
-    NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}
+    UPDATE MEMBER SET NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}
     WHEHE ID = #{id}
     </update>
     
