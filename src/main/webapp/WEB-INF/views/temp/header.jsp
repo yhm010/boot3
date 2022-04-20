@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 	
 <header class="container-fluid">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -14,7 +16,7 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/board/list">Notice</a>
+          <a class="nav-link active" href="/board/list">Board</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,10 +33,21 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </li>
+      
+        <li class="nav-item">
+          <a class="nav-link active" href="/member/join">회원가입</a>
+        </li>
+        
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/member/login">로그인</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="/">로그아웃</a>
+        </li>
+	
     </div>
   </div>
 </nav>

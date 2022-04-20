@@ -11,10 +11,10 @@ public interface MemberMapper {
 	public int join(MemberVO memberVO)throws Exception;
 	
 	//login
-	public List<MemberVO> login(MemberVO memberVO) throws Exception;
+	public MemberVO login(MemberVO memberVO) throws Exception;
 	
 	//mypage
-	public List<MemberVO> mypage(MemberVO memberVO)throws Exception;
+	public MemberVO mypage(MemberVO memberVO)throws Exception;
 
 	//update
 	public int update(MemberVO memberVO)throws Exception;
