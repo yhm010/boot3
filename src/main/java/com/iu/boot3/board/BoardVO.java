@@ -1,6 +1,7 @@
 package com.iu.boot3.board;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 @Data
@@ -16,5 +17,7 @@ public class BoardVO {
 	private Long step;
 	private Long depth;
 	private Long category;
+	
+	private List<BoardFilesVO> filesVOs;
 	
 }

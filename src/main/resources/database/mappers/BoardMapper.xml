@@ -4,9 +4,38 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.iu.boot3.board.BoardMapper">
-    <select id="getDetail" parameterType="BoardVO" resultType="BoardVO">
-    	SELECT * FROM BOARD WHERE NUM=#{num}
+    
+    <select id="getFileDetail" parameterType="BoardFilesVO" resultType="BoardFilesVO">
+    	SELECT * FROM BOARDFILES WHERE FILENUM = #{fileNum}
     </select>
+    
+    <select id="getDetail" parameterType="BoardVO" resultMap="getDetailResult">
+    	SELECT B.*, F.*
+		FROM BOARD B
+			LEFT JOIN
+			BOARDFILES F
+		USING(NUM)
+		WHERE NUM=#{num}
+    </select>
+    
+    <resultMap type="BoardVO" id="getDetailResult">
+    <id column="num" property="num" />
+    <result column="title" property="title"/>
+    <result column="writer" property="writer" />
+    <result column="contents" property="contents"/>
+    <result column="hit" property="hit" />
+    <result column="regDate" property="regDate"/>
+    <result column="ref" property="ref" />
+    <result column="step" property="step" />
+    <result column="depth" property="depth" />
+    <result column="caregory" property="caregory"/>
+    
+    <collection property="filesVOs" javaType="java.util.List" ofType="BoardFilesVO">
+    <id column="fileNum" property="fileNum"/>
+    <result column="fileName" property="fileName"/>
+    <result column="oriName" property="oriName"/>
+    </collection>
+    </resultMap>
     
     <select id="getList" resultType="BoardVO" parameterType="Pager">
     	SELECT * FROM BOARD
@@ -26,9 +55,9 @@
     	ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}   	
     </select>
     
-    <insert id="setAdd" parameterType="BoardVO">
+    <insert id="setAdd" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
     INSERT INTO BOARD (NUM, TITLE, WRITER, CONTENTS, HIT, REGDATE, REF, STEP, DEPTH, CATEGORY)
-VALUES (NULL, #{title}, #{writer}, #{contents}, 0, now(), 0, 0, 0, 1)
+VALUES (#{num}, #{title}, #{writer}, #{contents}, 0, now(), 0, 0, 0, 1)
     </insert>
     
     
@@ -42,10 +71,6 @@ VALUES (NULL, #{title}, #{writer}, #{contents}, 0, now(), 0, 0, 0, 1)
     
     <select id="getFileList" resultType="BoardFilesVO">
     	SELECT * FROM BOARDFILES ORDER BY NUM DESC
-    </select>
-    
-    <select id="getFileDetail" parameterType="BoardFilesVO" resultType="BoardFilesVO">
-    	SELECT * FROM BOARDFILES WHERE FILENUM=#{fileNum}
     </select>
     
     <insert id="setFileAdd" parameterType="BoardFilesVO">

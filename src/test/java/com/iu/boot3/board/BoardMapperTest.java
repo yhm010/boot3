@@ -25,7 +25,7 @@ class BoardMapperTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	void setFileDelete() throws Exception {
 		BoardFilesVO boardFilesVO = new BoardFilesVO();
 		boardFilesVO.setFileNum(6L);
@@ -43,16 +43,16 @@ class BoardMapperTest {
 	}
 	
 	//@Test
-	void setFileList() throws Exception {
-		List<BoardFilesVO> ar = boardMapper.getFileList();
-		assertNotEquals(0, ar.size());
-	}
+//	void setFileList() throws Exception {
+//		List<BoardFilesVO> ar = boardMapper.getFileList();
+//		assertNotEquals(0, ar.size());
+//	}
 	
 	//getDetail
-	//@Test
+	@Test
 	void test() throws Exception {
 		BoardVO boardVO = new BoardVO();
-		boardVO.setNum(3L);
+		boardVO.setNum(124L);
 		boardVO = boardMapper.getDetail(boardVO);
 		
 		System.out.println(boardVO.toString());

@@ -19,7 +19,7 @@
 </div>
 </div>
 </div>
-	<form action="./add" method="post">
+	<form action="./add" method="post" enctype="multipart/form-data">
 	<div class="row mb-3">
   <label for="title" class="col-sm-2 col-form-label">제목</label>
   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력하세요." name="title">
@@ -31,6 +31,17 @@
 <label for="title" class="col-sm-2 col-form-label">작성자</label>
   <input type="text" class="form-control" id="exampleFormControlInput1" name="writer">
 </div>
+
+	<div class="row mb-3">
+  <label for="files" class="col-sm-2 col-form-label">파일</label>
+  <input type="file" class="form-control" id="exampleFormControlInput1" name="files">
+	</div>
+	
+		<div class="row mb-3">
+  <label for="files" class="col-sm-2 col-form-label">파일</label>
+  <input type="file" class="form-control" id="exampleFormControlInput1" name="files">
+	</div>
+	
 
  <button type="submit">등록</button>
 </form>
