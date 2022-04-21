@@ -77,21 +77,14 @@ public class MemberController {
 		return mv;
 	}	
 	
-//	@GetMapping("mypage")
-//	public ModelAndView mypage(HttpSession session)throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-//		memberVO = memberSerive.mypage(memberVO);
-//		mv.addObject("member/mypage");
-//		mv.addObject("vo", memberVO);
-//		return mv;
-//	}
-	
 	@GetMapping("mypage")
-	public void mypage(HttpSession session, Model model) throws Exception{
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+	public ModelAndView mypage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		memberVO = memberSerive.mypage(memberVO);
-		model.addAttribute("vo", memberVO);
+		mv.setViewName("member/mypage");
+		mv.addObject("vo", memberVO);
+		return mv;
 	}
 	
 	@GetMapping("update")
