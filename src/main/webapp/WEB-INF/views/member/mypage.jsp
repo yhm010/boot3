@@ -74,14 +74,27 @@
   </div>
 </div>
 
-<h4>첨부파일</h4>
-<c:forEach items="${vo.filesVOs}" var="f">
-<a href="./fileDown?fileNum=${f.fileNum}">${f.oriName}</a>
+<hr class="my-6">
+	    		<h6>Photo</h6>
+	    	
+				<ul class="list-group list-group-flush">
+				   	<li class="list-group-item">
+				   		<a href="./fileDown?fileNum=${vo.memberFilesVO.fileName}">${vo.memberFilesVO.oriName}</a>
+				   	</li>
+				</ul>
 
-</c:forEach>
-
-<a href="./update?num=${vo.num}"><button type="submit" class="btn btn-warning">수정</button></a>
-<a href="./delete?num=${vo.num}"><button type="submit" class="btn btn-warning">삭제</button></a>
+    	 
+		</div>
+	
+	</div>
+	
+</div>
+	<div class="container my-4">
+		<div class="col-2 d-flex">
+			<a href="update" role="button" class="btn btn-success mx-1">Update</a>
+			<a href="delete" role="button" class="btn btn-danger mx-1">Delete</a>
+		</div>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

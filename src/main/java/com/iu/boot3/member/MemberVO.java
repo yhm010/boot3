@@ -10,5 +10,7 @@ public class MemberVO {
 	private String name;
 	private String email;
 	private String phone;
+	
+	private MemberFilesVO memberFilesVO;
 
 }
