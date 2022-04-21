@@ -48,7 +48,7 @@
 	let count=0;
 	$("#fileAdd").click(function() {
 		if(count>4){
-			alert('최대 5개만 가능');
+			alert('최대 5개만 가능합니다');
 			return;
 		}
 		let result = '<div class="input-group">';
