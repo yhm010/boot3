@@ -16,27 +16,26 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 @Component
-//fileDown
-public class FileDown extends AbstractView{
-	
+public class FileDown extends AbstractView {
+	//fileDown
 	@Autowired
 	private ServletContext servletContext;
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		
-		//1. 파일이  저장된  경로 설정
+   		//1. 파일이  저장된  경로 설정
 		String path = "resources/upload/";
 		path = path + (String)model.get("board");
 		path = servletContext.getRealPath(path);
 		
-        //2. model에서 파일 객체 get 해서 꺼내기
+        //2. Model에서 파일 객체 Get
         FileVO fileVO =(FileVO)model.get("fileVO");
+		
 		
         //3. 위의 정보를 담는 파일 객체 생성
 		File file = new File(path, fileVO.getFileName());
+		
 		
 		//한글 처리
 		response.setCharacterEncoding("UTF-8");
@@ -46,7 +45,6 @@ public class FileDown extends AbstractView{
 		
 		//다운로드시 파일 이름을 인코딩 처리
 		String fileName = URLEncoder.encode(fileVO.getOriName(), "UTF-8");
-
 		
 		//header 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"" );
@@ -62,6 +60,7 @@ public class FileDown extends AbstractView{
 		
 		os.close();
 		fi.close();
-    } 
 		
 	}
+
+}

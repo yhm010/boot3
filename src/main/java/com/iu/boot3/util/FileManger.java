@@ -17,19 +17,22 @@ public class FileManger {
 	@Autowired
 	private ServletContext servletContext;
 	
-	public boolean fileDelete(String fileName, String path) throws Exception{
+	public boolean fileDelete(String fileName, String path)throws Exception{
 		path = servletContext.getRealPath(path);
 		
 		File file = new File(path, fileName);
+		
 		return file.delete();
+		
+		
 	}
 	
+	
+	
 	public String fileSave(MultipartFile mf, String path)throws Exception{
-		// path = "프로젝트 상에 파일을 저장할 폴더의 경로"
-		
-		// 1. 파일을 HDD에 저장하고
-		
-		// 2. 저장된 파일명을 리턴(파일명은 중복 되지 않도록)
+		//path ="프로젝트 상의 파일을 저장할 폴더의 경로"
+		//1. 파일을 HDD에 저장하고
+		//2. 저장된 파일명을 리턴(파일명은 중복 X)
 		path = servletContext.getRealPath(path);
 		System.out.println(path);
 		
@@ -46,7 +49,6 @@ public class FileManger {
 		mf.transferTo(file);
 		
 		return fileName;
-		
 	}
 
 }

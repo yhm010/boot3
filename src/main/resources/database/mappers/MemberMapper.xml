@@ -21,24 +21,26 @@
     </select>
     
     <select id="mypage" parameterType="MemberVO" resultMap="mypageResult">
-	 SELECT M.NAME, M.EMAIL, M.PHONE, F.*
-    FROM MEMBER M
-    	LEFT JOIN
-    	MEMBERFILES F
-    	USING (ID)
-    	WHERE ID=#{id}
-	</select>
+		SELECT M.NAME, M.EMAIL, M.PHONE, F.* 
+		FROM MEMBER M
+			 LEFT JOIN
+			 MEMBERFILES F
+			 USING (ID)
+		WHERE ID=#{id}
+		
+	</select>	
 	
 	<resultMap type="MemberVO" id="mypageResult">
-		<id column="id" property="id"/> <!-- PK -->
 		<result column="name" property="name"/>
-		<result column="phone" property="phone"/>
 		<result column="email" property="email"/>
-		<association property="memberFilesVO" javaType="com.iu.boot3.member.MemberFilesVO">
+		<result column="phone" property="phone"/>
+		<association property="memberFilesVO" javaType="MemberFilesVO">
 			<id column="fileNum" property="fileNum"/>
+			<result column="id" property="id"/>
 			<result column="fileName" property="fileName"/>
 			<result column="oriName" property="oriName"/>
 		</association>
+		
 	</resultMap>
     
     <update id="update" parameterType="MemberVO">
