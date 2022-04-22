@@ -19,6 +19,7 @@ public class ProductService {
 	
 	public List<ProductVO> list(Pager pager)throws Exception{
 		pager.makeRow();
+		pager.makeNum(productMapper.totalCount(pager));
 		return productMapper.list(pager);
 	}
 	

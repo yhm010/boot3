@@ -7,12 +7,10 @@
     
     <insert id="add" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
     INSERT INTO PRODUCT(PRODUCTNUM, PRODUCTNAME, PRODUCTPRICE, PRODUCTCOUNT, PRODUCTDETAIL)
-    VALUES (#{productNum}, #{productName}, #{productPrice}, #{productCount}, #{productDetail})
-    
+    VALUES (#{productNum}, #{productName}, #{productPrice}, #{productCount}, #{productDetail})   
     </insert>
     
-       <select id="list" parameterType="Pager" resultMap="listResult">
-    
+    <select id="list" parameterType="Pager" resultMap="listResult">   
     SELECT P.*, F.*
 	FROM
 	(

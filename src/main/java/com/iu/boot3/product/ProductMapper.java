@@ -15,4 +15,5 @@ public interface ProductMapper {
 	
 	public int fileAdd(ProductFilesVO productFilesVO)throws Exception;
 
+	public Long totalCount(Pager pager) throws Exception;
 }
