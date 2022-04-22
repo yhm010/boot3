@@ -13,6 +13,6 @@ public interface ProductMapper {
 	
 	public int add(ProductVO productVO)throws Exception;
 	
-	public int FileAdd(ProductFilesVO productFilesVO)throws Exception;
+	public int fileAdd(ProductFilesVO productFilesVO)throws Exception;
 
 }

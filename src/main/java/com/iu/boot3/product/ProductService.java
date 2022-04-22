@@ -38,7 +38,7 @@ public class ProductService {
 			productFilesVO.setProductNum(productVO.getProductNum());
 			productFilesVO.setFileName(fileName);
 			productFilesVO.setOriName(mf.getOriginalFilename());
-			productMapper.FileAdd(productFilesVO);
+			productMapper.fileAdd(productFilesVO);
 		}
 		return result;
 	
