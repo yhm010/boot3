@@ -18,26 +18,26 @@ public interface BoardMapper {
 	//detail : getFileDetail
 	public BoardFilesVO getFileDetail(BoardFilesVO boardFilesVO)throws Exception;
 	
-	//list : getFileList
+	//list   : getFileList
 	public List<BoardFilesVO> getFileList(BoardVO boardVO)throws Exception;
 	
-
 	
-	//getdetail
-	public BoardVO getDetail(BoardVO boardVO) throws Exception;
+	//detail
+	public BoardVO getDetail(BoardVO boardVO)throws Exception;
 	
-	//list : getList
+	//totalCount
+	public Long getTotalCount(Pager pager)throws Exception;
+	
+	//list   : getList
 	public List<BoardVO> getList(Pager pager)throws Exception;
 	
 	//insert : setAdd
 	public int setAdd(BoardVO boardVO)throws Exception;
 	
-	//update : setUpdate
+	//update  : setUpdate
 	public int setUpdate(BoardVO boardVO)throws Exception;
 	
-	//delete : setDelete
+	//delete  : setDelete
 	public int setDelete(BoardVO boardVO)throws Exception;
-	
-	//totalCount
-	public Long getTotalCount(Pager pager)throws Exception;
+
 }

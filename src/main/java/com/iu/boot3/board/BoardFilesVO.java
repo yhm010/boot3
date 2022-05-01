@@ -7,8 +7,11 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class BoardFilesVO extends FileVO{
+public class BoardFilesVO extends FileVO {
 	
+
 	private Long num;
+
+	
 
 }

@@ -16,13 +16,7 @@ class MemberMapperTest {
 
 	//@Test
 	void join() throws Exception{
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("id");
-		memberVO.setPw("pw");
 		
-		int result= memberMapper.join(memberVO);
-		
-		assertEquals(1, result);
 	}
 	
 	//@Test

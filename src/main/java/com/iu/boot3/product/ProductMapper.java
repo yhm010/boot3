@@ -8,12 +8,20 @@ import com.iu.boot3.util.Pager;
 
 @Mapper
 public interface ProductMapper {
+	public int setUpdate(ProductVO productVO)throws Exception;
 	
-	public List<ProductVO> list(Pager pager)throws Exception;
+	public Long getTotalCount(Pager pager)throws Exception;
 	
-	public int add(ProductVO productVO)throws Exception;
+	public List<ProductVO> getList(Pager pager)throws Exception;
 	
-	public int fileAdd(ProductFilesVO productFilesVO)throws Exception;
+	public int setAdd(ProductVO productVO)throws Exception;
+	
+	public ProductFilesVO getFileDetail(ProductFilesVO productFilesVO)throws Exception;
+	
+	public int setFileAdd(ProductFilesVO productFilesVO)throws Exception;
+	
+	public int setFileDelete(ProductFilesVO productFilesVO)throws Exception;
+	
+	public ProductVO getDetail(ProductVO productVO) throws Exception;
 
-	public Long totalCount(Pager pager) throws Exception;
 }

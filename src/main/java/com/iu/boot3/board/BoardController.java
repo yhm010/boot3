@@ -1,11 +1,9 @@
 package com.iu.boot3.board;
 
-import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,81 +24,101 @@ public class BoardController {
 	public String getBoard() {
 		return "board";
 	}
+	
+	@GetMapping("summerFileDelete")
+	public ModelAndView setSummerFileDelete(String fileName)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(fileName);
+		boolean result = boardService.setSummerFileDelete(fileName);
+		mv.setViewName("common/result");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+	@PostMapping("summerFileUpload")
+	public ModelAndView setSummerFileUpload(MultipartFile files) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		String fileName = boardService.setSummerFileUpload(files);
+		System.out.println(fileName);
+		mv.setViewName("common/result");
+		mv.addObject("result", fileName);
+		return mv;
+	}
+	
 	@GetMapping("fileDown")
 	public ModelAndView getFileDown(BoardFilesVO boardFilesVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardFilesVO = boardService.getFileDetail(boardFilesVO);
-		
-		// 속성명은 파일다운 클래스에서 사용하는 이름과 동일하게
+		//속성명은 fileDown 클래스에서 사용하는 이름과 동일하게
 		mv.addObject("fileVO", boardFilesVO);
-		// 클래스의 이름과 동일하게
+		
+		//Bean(클래스)의 이름과 동일하게
 		mv.setViewName("fileDown");
+		
 		return mv;
 	}
 	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = boardService.setDelete(boardVO);
+		
+		mv.setViewName("redirect:./list");
+		return mv;
+		
+	}
+	
+	@PostMapping("update")
+	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv)throws Exception{
+		
+		int result = boardService.setUpdate(boardVO);
+		mv.setViewName("redirect:./list");
+		
+		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boardVO = boardService.getDetail(boardVO);
+		mv.setViewName("board/update");
+		mv.addObject("vo", boardVO);
+		return mv;
+	}
+	
+	@GetMapping("detail")
+	public ModelAndView getDetail(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/detail");
+		boardVO = boardService.getDetail(boardVO);
+		mv.addObject("vo", boardVO);
+		return mv;
+	}
+	
+	@PostMapping("add")
+	public ModelAndView setAdd(BoardVO boardVO, MultipartFile [] files)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = boardService.setAdd(boardVO, files);
+		
+		mv.setViewName("redirect:./list");
+		return mv;
+		
+	}
+	
+	@GetMapping("add")
+	public void setAdd()throws Exception{}
+	
 	@GetMapping("list")
-	public ModelAndView list(Pager pager)throws Exception{
+	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<BoardVO> ar = boardService.getList(pager);
 		mv.setViewName("board/list");
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
+		
 		return mv;
 	}
-	
-	 @GetMapping("add")
-	   public ModelAndView add()throws Exception{
-	      ModelAndView mv = new ModelAndView();
-	      mv.setViewName("board/add");
-	      return mv; 
-	   }
-	   
-	   @PostMapping("add")
-	   public ModelAndView add(BoardVO boardVO,MultipartFile[] files)throws Exception{
-	      ModelAndView mv = new ModelAndView();
-	      int result = boardService.setAdd(boardVO,files);
-	      mv.setViewName("redirect:./list");
-	      return mv; 
-	   }
-	   
-	   @GetMapping("detail")
-	   public ModelAndView getDatail(BoardVO boardVO)throws Exception{
-		   ModelAndView mv = new ModelAndView();
-		   boardVO = boardService.getDetail(boardVO);
-		   mv.addObject("board/detail");
-		   mv.addObject("vo", boardVO);
-		   return mv;
-		   
-	   }
-	   
-	   @GetMapping("update")
-	   public String setUpdate(BoardVO boardVO, Model model)throws Exception{
-		   boardVO = boardService.getDetail(boardVO);
-		   model.addAttribute("vo", boardVO);
-		   return "board/update";
-	   }
-	   
-	   @PostMapping("update")
-	   public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
-		   ModelAndView mv = new ModelAndView();
-		 int result = boardService.setUpdate(boardVO);
-		 System.out.println(boardVO.getTitle());
-		 System.out.println(boardVO.getContents());
-		 System.out.println(boardVO.getNum());
-		 System.out.println(boardVO.getWriter());
-		 mv.setViewName("redirect:./list");
-		 return mv;
-	   }
-	   
-	   @GetMapping("delete")
-	   public ModelAndView setDelete(BoardVO boardVO)throws Exception{
-		   int result = boardService.setDelete(boardVO);
-		   ModelAndView mv = new ModelAndView();
-		   mv.setViewName("redirect:./list");
-		return mv;
-	   }
-	   
-	
 
-	
 }

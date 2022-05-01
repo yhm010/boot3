@@ -4,105 +4,115 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("member/*")
 public class MemberController {
-	
+
 	@Autowired
-	private MemberSerive memberSerive;
-	
-	@ModelAttribute("member")
-	public String getmember() {
+	private MemberService memberService;
+
+	@ModelAttribute("board")
+	public String getBoard() {
 		return "member";
 	}
 	
-	@GetMapping("join")
-	public ModelAndView join()throws Exception{
+	@PostMapping("update")
+	public ModelAndView setUpdate(MemberVO memberVO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/join");
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		memberVO.setId(vo.getId());
+		int result = memberService.setUpdate(memberVO);
+		mv.setViewName("redirect:./mypage");
 		return mv;
 	}
 	
-	@PostMapping("join")
-	public ModelAndView join(MemberVO memberVO)throws Exception{
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = memberSerive.join(memberVO);
+		MemberVO memberVO =(MemberVO)session.getAttribute("member");
+		memberVO = memberService.getDetail(memberVO);
+		
+		mv.addObject("vo", memberVO);
+		mv.setViewName("member/update");
+		return mv;
+	}
+	
+	@GetMapping("mypage")
+	public ModelAndView getMypage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO =(MemberVO)session.getAttribute("member");
+		memberVO = memberService.getDetail(memberVO);
+		
+		mv.addObject("vo", memberVO);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
+	
+	@GetMapping("logout")
+	public ModelAndView getLogout(HttpSession session)throws Exception{
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:../");
 		return mv;
 	}
 	
-	@GetMapping("login")
-	public ModelAndView login() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/login");
-		return mv;
-	}
-	
 	@PostMapping("login")
-	public ModelAndView login(MemberVO memberVO, HttpSession session)throws Exception{
+	public ModelAndView getLogin(MemberVO memberVO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		memberVO = memberSerive.login(memberVO);
+		memberVO = memberService.getLogin(memberVO);
 		mv.setViewName("member/login");
 		
 		if(memberVO!=null) {
 			session.setAttribute("member", memberVO);
 			mv.setViewName("redirect:../");
-		return mv;	
 		}
+		
+		return mv;
+	}
+	
+	@GetMapping("login")
+	public ModelAndView getLogin()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/login");
 		return mv;
 	}
 	
 	@GetMapping("delete")
-	public ModelAndView delete(HttpSession session)throws Exception{
+	public ModelAndView setDelete(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		int result = memberSerive.delete(memberVO);
+		MemberVO memberVO =(MemberVO)session.getAttribute("member");
+		int result = memberService.setDelete(memberVO);
+		
 		session.invalidate();
+		
 		mv.setViewName("redirect:../");
 		return mv;
 	}
 	
-	@GetMapping("logout")
-	public ModelAndView logout(HttpSession session)throws Exception{
-		session.invalidate();
+	@PostMapping("add")
+	public ModelAndView setAdd(MemberVO memberVO, MultipartFile files)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		int result = memberService.setAdd(memberVO, files);
+		
+		
 		mv.setViewName("redirect:../");
 		return mv;
-	}	
+	}
+ 
 	
-	@GetMapping("mypage")
-	public ModelAndView mypage(HttpSession session)throws Exception{
+	
+	@GetMapping("add")
+	public ModelAndView setAdd()throws Exception{
 		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		memberVO = memberSerive.mypage(memberVO);
-		mv.setViewName("member/mypage");
-		mv.addObject("vo", memberVO);
+		mv.setViewName("member/add");
 		return mv;
 	}
-	
-	@GetMapping("update")
-	public ModelAndView update(HttpSession session)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		memberVO = memberSerive.mypage(memberVO);
-		mv.setViewName("member/update");
-		mv.addObject("vo", memberVO);
-		return mv;
-	}
-	
-	@PostMapping("update")
-	public ModelAndView update(MemberVO memberVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = memberSerive.update(memberVO);
-		mv.setViewName("redirect:./mypage");
-		return mv;
-	}
-
 }
