@@ -1,9 +1,12 @@
 package com.iu.boot3.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,8 +84,14 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public ModelAndView getLogin(MemberVO memberVO, HttpSession session)throws Exception{
+	public ModelAndView getLogin(@Valid MemberVO memberVO, BindingResult bindingResult, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("Login Page");
+		
+		if(bindingResult.hasErrors()) {
+			mv.setViewName("member/login");
+			return mv;
+		}
 		memberVO = memberService.getLogin(memberVO);
 		mv.setViewName("member/login");
 		
