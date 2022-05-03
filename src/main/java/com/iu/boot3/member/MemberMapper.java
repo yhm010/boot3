@@ -9,10 +9,10 @@ public interface MemberMapper {
 	
 	public MemberVO getFindId(MemberVO memberVO)throws Exception;
 	
+	public MemberVO getId(MemberVO memberVO) throws Exception;
 	
 	//파일 detail
 	public MemberFilesVO getFileDetail(MemberVO memberVO)throws Exception;
-	
 	
 	//파일 추가
 	public int setFileAdd(MemberFilesVO memberFilesVO)throws Exception;

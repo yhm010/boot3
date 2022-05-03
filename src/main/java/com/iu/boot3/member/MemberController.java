@@ -124,10 +124,16 @@ public class MemberController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setAdd(MemberVO memberVO, MultipartFile files)throws Exception{
+	public ModelAndView setAdd(@Valid MemberVO memberVO, BindingResult bindingResult, MultipartFile files)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
 		int result = memberService.setAdd(memberVO, files);
 		
+		//사용자 정의 검증 메서드 호출
+		if(memberService.memberError(memberVO, bindingResult)) {
+			mv.setViewName("member/add");
+			return mv;
+		}
 		
 		mv.setViewName("redirect:../");
 		return mv;
@@ -136,7 +142,7 @@ public class MemberController {
 	
 	
 	@GetMapping("add")
-	public ModelAndView setAdd()throws Exception{
+	public ModelAndView setAdd(@ModelAttribute MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/add");
 		return mv;
