@@ -29,37 +29,34 @@ public class ExceptionController {
 	}
 	
 	@ExceptionHandler(NullPointerException.class)
-	public ModelAndView ex2(Exception e) {
+	public ModelAndView ex2() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Nullpointer 예외발생처리");
-		e.printStackTrace();
 		mv.setViewName("error/error");
 		return mv;
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public ModelAndView ex3(Exception e) {
+	public ModelAndView ex3() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Exception 예외발생처리");
-		e.printStackTrace();
 		mv.setViewName("error/error");
 		return mv;
 	}
 	
 	// 최상위 부모
 	@ExceptionHandler(Throwable.class)
-	public ModelAndView ex4(Exception e) {
+	public ModelAndView ex4() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Exception Throwable 예외발생처리");
 		mv.addObject("message", "페이지를 찾을 수 없습니다");
-		e.printStackTrace();
 		mv.setViewName("error/error");
 		return mv;
 	}
 	
 	//400 에러
 	@ExceptionHandler(NoHandlerFoundException.class)
-	public ModelAndView ex5(Exception e) {
+	public ModelAndView ex5() {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("4xx 예외발생처리");
 		mv.setViewName("error/error");
